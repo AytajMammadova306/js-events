@@ -1,17 +1,24 @@
-let tbody=document.getElementsByTagName("tbody")[0];
-let btn=document.getElementsByTagName("button")[0];
-btn.addEventListener("click",(e)=>{
+let tbody = document.getElementsByTagName("tbody")[0];
+let form = document.getElementsByTagName("form")[0];
+form.addEventListener("submit", (e) => {
     e.preventDefault()
-    let tr=document.createElement("tr")
-    let inputs=document.getElementsByTagName("input")
-    for(let i =0;i<inputs.length;i++){
-        let td=document.createElement("td")
-        td.textContent=`${inputs[i].value}`
+    let tr = document.createElement("tr")
+    let inputs = document.getElementsByClassName("headdings")
+    for (let i = 0; i < inputs.length; i++) {
+        let td = document.createElement("td")
+        td.textContent = `${inputs[i].value}`
         tr.append(td)
-        inputs[i].value=""
+        inputs[i].value = ""
     }
+    let td = document.createElement("td")
+    let btn=document.createElement("button")
+    btn.setAttribute=("type","button")
+    btn.textContent="X"
+    btn.addEventListener("click", (e) => {
+        e.target.parentElement.parentElement.remove()
+    })
+    td.appendChild(btn)
+    tr.append(td)
     tbody.appendChild(tr)
-    btn.blur()//inputun submiti focus goturmur, amma buttonun submiti goturur 
-    //ve focusu inputa vermekde mena olmur, birinci buttonun focusunu silmeliyem
     inputs[0].focus()
 })
